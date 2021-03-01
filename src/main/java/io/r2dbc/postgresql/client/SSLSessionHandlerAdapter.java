@@ -53,14 +53,14 @@ final class SSLSessionHandlerAdapter extends AbstractPostgresSSLHandlerAdapter {
                 processSslEnabled(ctx, msg);
                 break;
             case 'N':
-                processSslDisabled(ctx, msg);
+                processSslDisabled();
                 break;
             default:
                 throw new IllegalStateException("Unknown SSLResponse from server: '" + response + "'");
         }
     }
 
-    private void processSslDisabled(ChannelHandlerContext ctx, Object msg) {
+    private void processSslDisabled() {
         if (this.sslConfig.getSslMode().requireSsl()) {
             PostgresqlSslException e =
                 new PostgresqlSslException("Server support for SSL connection is disabled, but client was configured with SSL mode " + this.sslConfig.getSslMode());

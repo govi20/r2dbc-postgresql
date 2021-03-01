@@ -37,6 +37,9 @@ final class BalancedResolverGroup extends AddressResolverGroup<InetSocketAddress
 
     @Override
     protected AddressResolver<InetSocketAddress> newResolver(EventExecutor executor) throws Exception {
-        return new RoundRobinInetAddressResolver(executor, new DefaultNameResolver(executor)).asAddressResolver();
+        try (RoundRobinInetAddressResolver roundRobinInetAddressResolver =
+                     new RoundRobinInetAddressResolver(executor, new DefaultNameResolver(executor))) {
+            return roundRobinInetAddressResolver.asAddressResolver();
+        }
     }
 }

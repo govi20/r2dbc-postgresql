@@ -193,7 +193,7 @@ public enum DefaultHostnameVerifier implements HostnameVerifier {
             return false;
         }
 
-        List<String> commonNames = new ArrayList<String>(1);
+        List<String> commonNames = new ArrayList<>(1);
         for (Rdn rdn : DN.getRdns()) {
             if ("CN".equals(rdn.getType())) {
                 commonNames.add((String) rdn.getValue());

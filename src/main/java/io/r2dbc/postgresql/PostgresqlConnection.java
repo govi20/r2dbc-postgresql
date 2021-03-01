@@ -282,12 +282,7 @@ final class PostgresqlConnection implements io.r2dbc.postgresql.api.PostgresqlCo
 
     @Override
     public boolean isAutoCommit() {
-
-        if (this.client.getTransactionStatus() == IDLE) {
-            return true;
-        }
-
-        return false;
+        return this.client.getTransactionStatus() == IDLE;
     }
 
     @Override

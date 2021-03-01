@@ -42,7 +42,7 @@ final class BigDecimalCodec extends AbstractNumericCodec<BigDecimal> {
     BigDecimal doDecode(ByteBuf buffer, PostgresqlObjectId dataType, @Nullable Format format, @Nullable Class<? extends BigDecimal> type) {
         Assert.requireNonNull(buffer, "byteBuf must not be null");
 
-        return decodeNumber(buffer, dataType, format, BigDecimal.class, it -> new BigDecimal(it.doubleValue()));
+        return decodeNumber(buffer, dataType, format, BigDecimal.class, it -> BigDecimal.valueOf(it.doubleValue()));
     }
 
     @Override
